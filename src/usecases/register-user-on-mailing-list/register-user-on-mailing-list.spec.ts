@@ -1,4 +1,3 @@
-import { assert } from 'console'
 import { UserData } from './user-data'
 
 describe('Register user on mailist list', () => {
