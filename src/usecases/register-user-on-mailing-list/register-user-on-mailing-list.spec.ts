@@ -1,4 +1,4 @@
-import { UserData } from './user-data'
+import { UserData } from '../../entities/protocols/user-data'
 
 describe('Register user on mailist list', () => {
   test('should add user with complete date to mailing list', async () => {
