@@ -19,11 +19,11 @@ export class User {
     const emailOrError = Email.create(userData.email)
     const nameOrError = Name.create(userData.name)
     if (emailOrError.isLeft()) {
-      return left(new InvalidEmailError(userData.email))
+      return left(new InvalidEmailError())
     }
 
     if (nameOrError.isLeft()) {
-      return left(new InvalidNameError(userData.name))
+      return left(new InvalidNameError())
     }
 
     const name = nameOrError.value
