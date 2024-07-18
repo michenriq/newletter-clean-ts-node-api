@@ -35,14 +35,14 @@ describe('Register user on mailist list', () => {
     const name = 'any_name'
     const invalidEmail = 'any.com'
 
-    const response = await useCase.execute({
+    const response = (await useCase.execute({
       name,
       email: invalidEmail
-    })
+    })).value as Error
     const user = await repo.findUserByEmail(invalidEmail)
 
     expect(user).toBeNull()
-    expect(response).toEqual(left(new InvalidEmailError()))
+    expect(response.name).toEqual('InvalidEmailError')
   })
   test('should not add user with invalid name to mailing list', async () => {
     const users: UserData[] = []
@@ -53,13 +53,13 @@ describe('Register user on mailist list', () => {
     const invalidName = ''
     const email = 'any@tteste.com'
 
-    const response = await useCase.execute({
+    const response = (await useCase.execute({
       name: invalidName,
       email
-    })
+    })).value as Error
     const user = await repo.findUserByEmail(email)
 
     expect(user).toBeNull()
-    expect(response).toEqual(left(new InvalidNameError()))
+    expect(response.name).toEqual('InvalidNameError')
   })
 })
