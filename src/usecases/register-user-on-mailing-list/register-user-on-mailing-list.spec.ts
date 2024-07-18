@@ -25,9 +25,8 @@ describe('Register user on mailist list', () => {
     expect((await user).name).toBe('any_name')
     expect(response.value.name).toBe('any_name')
   })
-  test('should add user with invalid email to mailing list', async () => {
+  test('should not add user with invalid email to mailing list', async () => {
     const users: UserData[] = []
-    console.log(users)
     const repo: UserRepository = new InMemoryUserRepository(users)
     const useCase: RegisterUserOnMailingList = new RegisterUserOnMailingList(
       repo
