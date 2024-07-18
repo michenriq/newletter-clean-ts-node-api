@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passwithNoTests --silent --noStackTrace --runInBand",
-    "test-verbose": "jest --passwithNoTests  --runInBand",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test-verbose": "jest --passWithNoTests  --runInBand",
     "test-unit": "npm test -- --watch -c jest-unit-config.js",
     "test-integration": "npm test -- --watch -c jest-integration-config.js",
     "test-staged": "npm test -- --findRelatedTests",
@@ -56,7 +56,7 @@
   "lint-staged": {
     "*.ts": [
       "eslint --fix",
-      "npm run test-staged --passwithNoTests"
+      "npm run test-staged --passWithNoTests"
     ]
   },
   "eslintConfig": {
