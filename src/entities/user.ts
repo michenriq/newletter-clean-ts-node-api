@@ -1,4 +1,3 @@
-import e from 'express'
 import { Either, left, right } from '../shared'
 import { Email } from './email'
 import { InvalidEmailError } from './errors/invalid-email-error'
