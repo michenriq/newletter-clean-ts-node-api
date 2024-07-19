@@ -1,7 +1,7 @@
-import { left } from '../shared'
-import { InvalidEmailError } from './errors/invalid-email-error'
-import { InvalidNameError } from './errors/invalid-name-error'
-import { User } from './user'
+import { left } from '../../src/shared'
+import { InvalidEmailError } from '../../src/entities/errors/invalid-email-error'
+import { InvalidNameError } from '../../src/entities/errors/invalid-name-error'
+import { User } from '../../src/entities/user'
 
 describe('User domain entity', () => {
   test('should not create user with invalid e-mail address', () => {
