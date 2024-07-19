@@ -1,12 +1,11 @@
-import { UserData } from '../../../src/entities/protocols'
-import { RegisterUserOnMailingList } from '../../../src/usecases/register-user-on-mailing-list'
-import { UserRepository } from '../../../src/usecases/register-user-on-mailing-list/ports'
-import { InMemoryUserRepository } from './repository'
+import { UserData } from '@/entities/protocols'
+import { RegisterUserOnMailingList } from '@/usecases/register-user-on-mailing-list'
+import { UserRepository } from '@/usecases/register-user-on-mailing-list/ports'
+import { InMemoryUserRepository } from '@tests/usecases/register-user-on-mailing-list/repository'
 
 describe('Register user on mailist list', () => {
   test('should add user with complete date to mailing list', async () => {
     const users: UserData[] = []
-    console.log(users)
     const repo: UserRepository = new InMemoryUserRepository(users)
     const useCase: RegisterUserOnMailingList = new RegisterUserOnMailingList(
       repo

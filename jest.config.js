@@ -1,12 +1,16 @@
 module.exports = {
   roots: ["<rootDir>/tests"],
   collectCoverageFrom: [
-    "<rootDir/src/**/*.ts>",
+    "<rootDir>/src/**/*.ts",
     "!**/test/**",
-    '!**/config/**'
+    "!**/config/**"
   ],
   testEnvironment: "node",
   transform: {
-    ".+\\.ts$": "ts-jest",
+    "^.+\\.ts$": "ts-jest",
+  },
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@tests/(.*)$': '<rootDir>/tests/$1'
   },
 };
