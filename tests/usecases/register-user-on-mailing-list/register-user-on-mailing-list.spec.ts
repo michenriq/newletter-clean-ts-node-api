@@ -1,7 +1,7 @@
-import { UserData } from '../../../src/entities/protocols/user-data'
-import { UserRepository } from '../../../src/usecases/register-user-on-mailing-list/ports/user-repository'
-import { RegisterUserOnMailingList } from '../../../src/usecases/register-user-on-mailing-list/register-user-on-mailing-list'
-import { InMemoryUserRepository } from './repository/in-memory-user-repository'
+import { UserData } from '../../../src/entities/protocols'
+import { RegisterUserOnMailingList } from '../../../src/usecases/register-user-on-mailing-list'
+import { UserRepository } from '../../../src/usecases/register-user-on-mailing-list/ports'
+import { InMemoryUserRepository } from './repository'
 
 describe('Register user on mailist list', () => {
   test('should add user with complete date to mailing list', async () => {
