@@ -1,4 +1,4 @@
-import { RequiredParams } from '../protocols/required-params'
+import { RequiredParams } from '@/web-controllers/protocols'
 
 export const validateParams = (
   requiredParams: RequiredParams,
