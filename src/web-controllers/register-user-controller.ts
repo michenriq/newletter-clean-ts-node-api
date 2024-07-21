@@ -1,10 +1,9 @@
 import { UserData } from '@/entities/protocols'
-import { HttpRequest, HttpResponse } from '@/web-controllers/protocols'
-import { badRequest, created, serverError } from '@/web-controllers/util'
-import { RequiredParams } from './protocols/required-params'
-import { validateParams } from './util/validate-params-helper'
-import { MissingParamError } from './errors'
-import { RegisterUserOnMailingListUseCase } from '../usecases/register-user-on-mailing-list/protocols'
+import { HttpRequest, HttpResponse, RequiredParams } from '@/web-controllers/protocols'
+import { badRequest, created, serverError, validateParams } from '@/web-controllers/util'
+
+import { MissingParamError } from '@/web-controllers/errors'
+import { RegisterUserOnMailingListUseCase } from '@/usecases/register-user-on-mailing-list/protocols'
 
 export class RegisterUserController {
   private readonly useCase: RegisterUserOnMailingListUseCase;

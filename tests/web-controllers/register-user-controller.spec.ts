@@ -1,19 +1,31 @@
 import { UserData } from '@/entities/protocols'
-import { UserRepository } from '@/usecases/register-user-on-mailing-list/protocols'
+import {
+  RegisterUserOnMailingListUseCase,
+  UseCaseReturn,
+  UserRepository
+} from '@/usecases/register-user-on-mailing-list/protocols'
 import { InMemoryUserRepository } from '@tests/usecases/register-user-on-mailing-list/repository'
 import { RegisterUserOnMailingList } from '@/usecases/register-user-on-mailing-list'
 import { HttpRequest } from '@/web-controllers/protocols/'
 import { RegisterUserController } from '@/web-controllers/register-user-controller'
-import { HttpResponse } from '../../src/web-controllers/protocols/http-response'
-import { InvalidEmailError, InvalidNameError } from '../../src/entities/errors'
-import { MissingParamError } from '../../src/web-controllers/errors'
+import { HttpResponse } from '@/web-controllers/protocols/http-response'
+import { InvalidEmailError, InvalidNameError } from '@/entities/errors'
+import { MissingParamError } from '@/web-controllers/errors'
+import { ServerError } from '@/web-controllers/errors/server-error'
 
 describe('Register user  on Mailinglist Controller', () => {
   const users: UserData[] = []
   const repo: UserRepository = new InMemoryUserRepository(users)
-  const useCase: RegisterUserOnMailingList = new RegisterUserOnMailingList(
-    repo
-  )
+  const useCase: RegisterUserOnMailingListUseCase =
+    new RegisterUserOnMailingList(repo)
+  class RegisterUserOnMailingListStub
+  implements RegisterUserOnMailingListUseCase {
+    execute (request: UserData): Promise<UseCaseReturn> {
+      throw Error()
+    }
+  }
+  const useCaseStub: RegisterUserOnMailingListUseCase =
+    new RegisterUserOnMailingListStub()
   const controller: RegisterUserController = new RegisterUserController(
     useCase
   )
@@ -106,6 +118,25 @@ describe('Register user  on Mailinglist Controller', () => {
     expect(response.body).toBeInstanceOf(MissingParamError)
     expect((response.body as Error).message).toEqual(
       'Missing parameters: email, name'
+    )
+  })
+
+  test('should return status code 500 when the service throws any error', async () => {
+    const request: HttpRequest = {
+      body: {
+        name: 'any_name',
+        email: 'any@mail.com'
+      }
+    }
+
+    const controller: RegisterUserController = new RegisterUserController(
+      useCaseStub
+    )
+    const response: HttpResponse = await controller.handle(request)
+    expect(response.statusCode).toEqual(500)
+    expect(response.body).toBeInstanceOf(ServerError)
+    expect((response.body as Error).message).toEqual(
+      'An internal error has occured'
     )
   })
 })
