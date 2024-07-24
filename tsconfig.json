@@ -10,5 +10,6 @@
       "@/*": ["src/*"],
       "@tests/*": ["tests/*"]
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }
