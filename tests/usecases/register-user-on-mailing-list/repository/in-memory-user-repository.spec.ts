@@ -1,5 +1,5 @@
 import { UserData } from '@/entities/protocols'
-import { InMemoryUserRepository } from '@tests/usecases/register-user-on-mailing-list/repository'
+import { InMemoryUserRepository } from '@/usecases/register-user-on-mailing-list/repository'
 
 describe('In Memory User Repository', () => {
   test('should return null if usedr is not found', async () => {
@@ -21,7 +21,10 @@ describe('In Memory User Repository', () => {
   })
 
   test('should return all users in the repository', async () => {
-    const users: UserData[] = [{ name: 'any_name', email: 'any@email.com' }, { name: 'second_name', email: 'second@email.com' }]
+    const users: UserData[] = [
+      { name: 'any_name', email: 'any@email.com' },
+      { name: 'second_name', email: 'second@email.com' }
+    ]
     const sut = new InMemoryUserRepository(users)
     const usersList = await sut.findAllUsers()
 

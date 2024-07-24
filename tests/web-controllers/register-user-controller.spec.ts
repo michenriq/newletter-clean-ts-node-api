@@ -4,7 +4,7 @@ import {
   UseCaseReturn,
   UserRepository
 } from '@/usecases/register-user-on-mailing-list/protocols'
-import { InMemoryUserRepository } from '@tests/usecases/register-user-on-mailing-list/repository'
+import { InMemoryUserRepository } from '@/usecases/register-user-on-mailing-list/repository'
 import { RegisterUserOnMailingList } from '@/usecases/register-user-on-mailing-list'
 import { HttpRequest } from '@/web-controllers/protocols/'
 import { RegisterUserController } from '@/web-controllers/register-user-controller'
