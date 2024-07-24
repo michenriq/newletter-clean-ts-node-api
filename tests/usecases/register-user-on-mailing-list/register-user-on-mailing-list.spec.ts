@@ -1,7 +1,7 @@
 import { UserData } from '@/entities/protocols'
 import { RegisterUserOnMailingList } from '@/usecases/register-user-on-mailing-list'
-import { UserRepository } from '@/usecases/register-user-on-mailing-list/ports'
 import { InMemoryUserRepository } from '@tests/usecases/register-user-on-mailing-list/repository'
+import { UserRepository } from '@/usecases/register-user-on-mailing-list/protocols'
 
 describe('Register user on mailist list', () => {
   test('should add user with complete date to mailing list', async () => {
@@ -31,10 +31,12 @@ describe('Register user on mailist list', () => {
     const name = 'any_name'
     const invalidEmail = 'any.com'
 
-    const response = (await useCase.execute({
-      name,
-      email: invalidEmail
-    })).value as Error
+    const response = (
+      await useCase.execute({
+        name,
+        email: invalidEmail
+      })
+    ).value as Error
     const user = await repo.findUserByEmail(invalidEmail)
 
     expect(user).toBeNull()
@@ -49,10 +51,12 @@ describe('Register user on mailist list', () => {
     const invalidName = ''
     const email = 'any@tteste.com'
 
-    const response = (await useCase.execute({
-      name: invalidName,
-      email
-    })).value as Error
+    const response = (
+      await useCase.execute({
+        name: invalidName,
+        email
+      })
+    ).value as Error
     const user = await repo.findUserByEmail(email)
 
     expect(user).toBeNull()
