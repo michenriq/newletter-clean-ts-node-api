@@ -1,5 +1,5 @@
-import { HttpRequest, HttpResponse } from '@/web-controllers/protocols'
-import { ServerError } from '../errors/server-error'
+import { HttpResponse } from '@/web-controllers/protocols'
+import { ServerError } from '@/web-controllers/errors'
 
 export function created (data: any): HttpResponse {
   return {

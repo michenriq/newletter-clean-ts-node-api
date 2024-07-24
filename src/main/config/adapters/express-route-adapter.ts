@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { RegisterUserController } from '../../web-controllers/register-user-controller'
-import { HttpRequest } from '../../web-controllers/protocols'
+import { RegisterUserController } from '@/web-controllers/register-user-controller'
+import { HttpRequest } from '@/web-controllers/protocols'
 
 export const adaptRout = (controller: RegisterUserController) => {
   return async (req: Request, res: Response) => {
